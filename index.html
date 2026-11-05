@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>6 CONTOUR — Atelier for Architecture &amp; Spatial Research</title>
+    <meta name="description" content="6 Contour is an architectural atelier dedicated to the subtraction of excess: monolithic geometry, sculpted light, and contemplative stillness." />
+
+    <!-- Google Fonts: Syne (Bauhaus geometric architectural weight), Jost (Futura/Bauhaus geometric sans), Space Grotesk (technical mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Space+Grotesk:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Subtle SVG paper grain filter for heavyweight uncoated paper feel -->
+    <svg class="paper-noise-filter" aria-hidden="true">
+      <filter id="paperNoise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="matrix" values="0 0 0 0 0.14  0 0 0 0 0.16  0 0 0 0 0.15  0 0 0 0.025 0" />
+      </filter>
+    </svg>
+    <div class="paper-overlay" aria-hidden="true"></div>
+
+    <!-- MAIN VIEWPORT CONTAINER (Single Screen, No Body Scrolling) -->
+    <div id="app" class="app-viewport">
+
+      <!-- TOP NAVIGATION BAR -->
+      <header class="top-nav">
+        <div class="nav-brand" id="brand-logo" role="button" tabindex="0" title="Return to Index">
+          <div class="brand-glyph">
+            <span class="contour-line"></span>
+            <span class="contour-line"></span>
+            <span class="contour-line"></span>
+            <span class="contour-line"></span>
+            <span class="contour-line"></span>
+            <span class="contour-line"></span>
+          </div>
+          <div class="brand-name">
+            <span class="brand-num">6</span>
+            <span class="brand-text">CONTOUR</span>
+            <span class="brand-sub">ARCHITECTS</span>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation Items -->
+        <nav class="desktop-nav" aria-label="Primary Navigation">
+          <button class="nav-link active" data-view="hero">
+            <span class="nav-idx">00</span>
+            <span class="nav-label">INDEX</span>
+            <span class="nav-indicator"></span>
+          </button>
+          <button class="nav-link" data-view="about">
+            <span class="nav-idx">01</span>
+            <span class="nav-label">ABOUT</span>
+            <span class="nav-indicator"></span>
+          </button>
+          <button class="nav-link" data-view="works">
+            <span class="nav-idx">02</span>
+            <span class="nav-label">WORKS</span>
+            <span class="nav-badge">BOOK</span>
+            <span class="nav-indicator"></span>
+          </button>
+          <button class="nav-link" data-view="contact">
+            <span class="nav-idx">03</span>
+            <span class="nav-label">CONTACT</span>
+            <span class="nav-indicator"></span>
+          </button>
+        </nav>
+
+        <!-- Right Header Utilities: Time, Audio ambiance, Mobile Toggle -->
+        <div class="nav-actions">
+          <div class="nav-meta-time" title="Studio Time">
+            <span class="time-label">BERLIN</span>
+            <span class="time-val" id="berlin-time">16:30 CET</span>
+          </div>
+
+          <button id="sound-toggle" class="btn-icon" title="Toggle Tactile Ambiance" aria-label="Toggle Audio Ambiance">
+            <i data-lucide="volume-2" class="icon-sound-on"></i>
+            <i data-lucide="volume-x" class="icon-sound-off hide"></i>
+          </button>
+
+          <!-- Mobile Nav Hamburger Button (Top Right Icon) -->
+          <button id="mobile-menu-trigger" class="mobile-toggle" aria-label="Open Menu">
+            <span class="toggle-bar"></span>
+            <span class="toggle-bar"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- MOBILE FULL-PAGE NAVIGATION OVERLAY (Column Aligned) -->
+      <div id="mobile-nav-overlay" class="mobile-nav-sheet" aria-hidden="true">
+        <div class="mobile-nav-header">
+          <div class="mobile-brand">
+            <span class="brand-num">6</span>
+            <span class="brand-text">CONTOUR</span>
+          </div>
+          <button id="mobile-close-btn" class="mobile-close" aria-label="Close Menu">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+
+        <div class="mobile-nav-column">
+          <button class="mobile-nav-item active" data-view="hero">
+            <span class="item-idx">00</span>
+            <span class="item-text">INDEX &amp; SHOWCASE</span>
+          </button>
+          <button class="mobile-nav-item" data-view="about">
+            <span class="item-idx">01</span>
+            <span class="item-text">ABOUT ATELIER</span>
+          </button>
+          <button class="mobile-nav-item" data-view="works">
+            <span class="item-idx">02</span>
+            <span class="item-text">WORKS (PROJECT BOOK)</span>
+          </button>
+          <button class="mobile-nav-item" data-view="contact">
+            <span class="item-idx">03</span>
+            <span class="item-text">CONTACT &amp; LOCATION</span>
+          </button>
+        </div>
+
+        <div class="mobile-nav-footer">
+          <div class="footer-note">6 Contour Atelier Berlin • Tokyo</div>
+          <div class="footer-email">inquiries@6contour.com</div>
+        </div>
+      </div>
+
+      <!-- MAIN STAGE (Houses the 4 views, zero-scroll presentation) -->
+      <main id="stage" class="stage-container">
+
+        <!-- ==============================================
+             SECTION 0: HERO (5s scrolling images + info at left)
+             ============================================== -->
+        <section id="view-hero" class="view-panel active">
+          <div class="hero-layout">
+            
+            <!-- Left Info Column -->
+            <div class="hero-info-col">
+              <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span class="badge-text">ATELIER FOR SPATIAL RESTRAINT</span>
+              </div>
+
+              <div class="hero-headline-wrap">
+                <h1 class="hero-headline">
+                  <span>SCULPTED</span>
+                  <span>VOID &amp;</span>
+                  <span class="hero-accent">LIGHT.</span>
+                </h1>
+              </div>
+
+              <p class="hero-manifesto">
+                Architecture conceived through the subtraction of excess. 
+                We formulate spaces where heavyweight stone, cast shadow, 
+                and contemplative silence establish enduring equilibrium.
+              </p>
+
+              <!-- Dynamic Slide Meta (updates every 5s) -->
+              <div class="hero-slide-meta" id="slide-meta">
+                <div class="meta-indicator">
+                  <span class="meta-current" id="slide-num">01</span>
+                  <span class="meta-divider">/</span>
+                  <span class="meta-total">05</span>
+                </div>
+                <div class="meta-content">
+                  <h3 class="meta-title" id="slide-title">THE BRISE-SOLEIL VILLA</h3>
+                  <div class="meta-details" id="slide-details">KYOTO, JAPAN — 640 M² RESIDENTIAL</div>
+                </div>
+              </div>
+
+              <!-- 5s Interval Progress Indicator -->
+              <div class="hero-progress-container" title="Image rotates every 5 seconds">
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill" id="slide-progress"></div>
+                </div>
+                <div class="progress-pills" id="slide-pills">
+                  <button class="pill active" data-index="0" aria-label="Slide 1"></button>
+                  <button class="pill" data-index="1" aria-label="Slide 2"></button>
+                  <button class="pill" data-index="2" aria-label="Slide 3"></button>
+                  <button class="pill" data-index="4" aria-label="Slide 4"></button>
+                  <button class="pill" data-index="5" aria-label="Slide 5"></button>
+                </div>
+              </div>
+
+              <!-- Primary CTAs -->
+              <div class="hero-actions">
+                <button class="btn-primary" id="btn-open-monograph">
+                  <span>OPEN MONOGRAPH</span>
+                  <i data-lucide="book-open"></i>
+                </button>
+                <button class="btn-secondary" id="btn-hero-contact">
+                  <span>REQUEST CONSULTATION</span>
+                  <i data-lucide="arrow-right"></i>
+                </button>
+              </div>
+
+              <!-- Bottom Editorial Stamp -->
+              <div class="hero-colophon">
+                <span>EST. 2014</span>
+                <span class="colophon-sep">•</span>
+                <span>BAUHAUS HERITAGE</span>
+                <span class="colophon-sep">•</span>
+                <span>GLOBAL PRACTICE</span>
+              </div>
+            </div>
+
+            <!-- Right Visual Frame (5s Carousel) -->
+            <div class="hero-visual-col">
+              <div class="image-slides-wrapper" id="hero-carousel">
+                <!-- Slide 1 -->
+                <div class="hero-slide active" data-title="THE BRISE-SOLEIL VILLA" data-location="KYOTO, JAPAN — 640 M² RESIDENTIAL" data-coords="35.0116° N, 135.7681° E">
+                  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85" alt="The Brise-Soleil Villa Kyoto" />
+                  <div class="slide-overlay-tag">KYOTO // RESIDENCE</div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="hero-slide" data-title="THE ALPINE MONOLITH" data-location="VALS, SWITZERLAND — 820 M² RETREAT" data-coords="46.6186° N, 9.1804° E">
+                  <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=85" alt="The Alpine Monolith Vals" />
+                  <div class="slide-overlay-tag">VALS // SANCTUARY</div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="hero-slide" data-title="KŌSEN CULTURAL PAVILION" data-location="TOKYO, JAPAN — 1,450 M² PUBLIC GALLERY" data-coords="35.6762° N, 139.6503° E">
+                  <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=2000&q=85" alt="Kōsen Cultural Pavilion" />
+                  <div class="slide-overlay-tag">TOKYO // CULTURAL</div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="hero-slide" data-title="THE HORIZON COURTYARD" data-location="MALLORCA, SPAIN — 520 M² ATELIER" data-coords="39.6953° N, 3.0176° E">
+                  <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85" alt="The Horizon Courtyard" />
+                  <div class="slide-overlay-tag">MALLORCA // RETREAT</div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="hero-slide" data-title="QUARRY CONTEMPORARY ARCHIVE" data-location="TUSCANY, ITALY — 2,100 M² ADAPTIVE REUSE" data-coords="43.7711° N, 11.2486° E">
+                  <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2000&q=85" alt="Quarry Contemporary Archive" />
+                  <div class="slide-overlay-tag">TUSCANY // ADAPTIVE</div>
+                </div>
+              </div>
+
+              <!-- Subtle Geometric Architectural Scale Overlay -->
+              <div class="hero-scale-grid" aria-hidden="true">
+                <span class="scale-coord" id="scale-coords">35.0116° N, 135.7681° E</span>
+                <div class="scale-ruler">
+                  <span>0M</span>
+                  <div class="ruler-ticks"></div>
+                  <span>25M</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ==============================================
+             SECTION 1: ABOUT (Bento Grid Structure)
+             ============================================== -->
+        <section id="view-about" class="view-panel">
+          <div class="section-inner bento-section">
+            
+            <!-- Section Header: Breathable & Minimalist -->
+            <div class="section-header">
+              <div class="header-pre">
+                <span class="section-num">01</span>
+                <span class="section-tag">DISCIPLINE &amp; ETHOS</span>
+              </div>
+              <h2 class="section-title">THE SIX CONTOURS OF VOID &amp; MASS</h2>
+              <p class="section-subtitle">
+                A spatial practice founded on Bauhaus reductionism. Every structure is an exercise 
+                in subtraction — balancing raw materiality with quiet geometry.
+              </p>
+            </div>
+
+            <!-- Bento Grid Layout -->
+            <div class="bento-grid">
+              
+              <!-- Bento Card 1: Studio Ethos (Col Span 2) -->
+              <div class="bento-card bento-hero-card">
+                <div class="card-inner">
+                  <div class="card-top">
+                    <span class="card-kicker">CORE ETHOS</span>
+                    <span class="brass-seal">EST. 2014</span>
+                  </div>
+                  <h3 class="bento-title">Geometry as Stillness</h3>
+                  <p class="bento-copy">
+                    We do not fill space; we curate emptiness. In an era of sensory congestion, 
+                    our architecture operates as an acoustic and sensory filter. We treat natural light 
+                    not as an afterthought, but as our primary structural medium — carving apertures that 
+                    track solar time across unadorned limestone and board-formed concrete.
+                  </p>
+                  <div class="card-footer-quote">
+                    <span class="quote-mark">“</span>
+                    <em>Form does not merely follow function; form dignifies human presence.</em>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bento Card 2: Atelier Metrics -->
+              <div class="bento-card bento-stat-card">
+                <div class="card-inner">
+                  <div class="card-top">
+                    <span class="card-kicker">MEASURED PRACTICE</span>
+                    <i data-lucide="compass" class="card-icon"></i>
+                  </div>
+                  <div class="bento-stats-grid">
+                    <div class="stat-item">
+                      <span class="stat-number">48</span>
+                      <span class="stat-label">Realized Monographs</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-number">11</span>
+                      <span class="stat-label">International Awards</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-number">150<small>yr</small></span>
+                      <span class="stat-label">Structural Horizon</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-number">100<small>%</small></span>
+                      <span class="stat-label">Honest Natural Sourcing</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bento Card 3: Materiality & Tactile Palette -->
+              <div class="bento-card bento-material-card">
+                <div class="card-inner">
+                  <div class="card-top">
+                    <span class="card-kicker">MATERIAL HONESTY</span>
+                    <span class="brass-chip">FOUR PILLARS</span>
+                  </div>
+                  <h3 class="bento-title-sm">Tactile Registry</h3>
+                  <div class="material-swatches">
+                    <div class="swatch-item active" data-mat="concrete">
+                      <div class="swatch-preview swatch-concrete"></div>
+                      <div class="swatch-meta">
+                        <span class="swatch-name">Board-Formed Concrete</span>
+                        <span class="swatch-desc">High thermal mass with tactile timber grain transfer.</span>
+                      </div>
+                    </div>
+                    <div class="swatch-item" data-mat="stone">
+                      <div class="swatch-preview swatch-stone"></div>
+                      <div class="swatch-meta">
+                        <span class="swatch-name">Quarried Alpine Quartzite</span>
+                        <span class="swatch-desc">Hand-split mountain stone from local Valais deposits.</span>
+                      </div>
+                    </div>
+                    <div class="swatch-item" data-mat="brass">
+                      <div class="swatch-preview swatch-brass"></div>
+                      <div class="swatch-meta">
+                        <span class="swatch-name">Hand-Aged Brass &amp; Bronze</span>
+                        <span class="swatch-desc">Unlacquered living patinas that age with occupant touch.</span>
+                      </div>
+                    </div>
+                    <div class="swatch-item" data-mat="wood">
+                      <div class="swatch-preview swatch-wood"></div>
+                      <div class="swatch-meta">
+                        <span class="swatch-name">Charred Japanese Cedar</span>
+                        <span class="swatch-desc">Yakisugi carbonized timber resistant to decay and flame.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bento Card 4: Design Directives -->
+              <div class="bento-card bento-directives-card">
+                <div class="card-inner">
+                  <div class="card-top">
+                    <span class="card-kicker">ARCHITECTURAL CODE</span>
+                    <i data-lucide="layers" class="card-icon"></i>
+                  </div>
+                  <h3 class="bento-title-sm">The 3 Uncompromising Rules</h3>
+                  <div class="directives-list">
+                    <div class="directive-row">
+                      <span class="dir-num">01</span>
+                      <div class="dir-text">
+                        <strong>Radical Breathability:</strong> Never crowd volumes. White space is structural air.
+                      </div>
+                    </div>
+                    <div class="directive-row">
+                      <span class="dir-num">02</span>
+                      <div class="dir-text">
+                        <strong>Continuous Plane:</strong> Interior and exterior ground lines meet seamlessly without thresholds.
+                      </div>
+                    </div>
+                    <div class="directive-row">
+                      <span class="dir-num">03</span>
+                      <div class="dir-text">
+                        <strong>Authentic Gravity:</strong> No artificial veneers. If a column appears heavy, it carries load.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bento Card 5: Critical Monologue & Press (Span 2 cols) -->
+              <div class="bento-card bento-press-card">
+                <div class="card-inner">
+                  <div class="press-layout">
+                    <div class="press-quote-wrap">
+                      <p class="press-quote">
+                        “6 Contour produces architecture of profound poise. Their buildings do not clamor for 
+                        attention; instead, they command reverence through silent proportions and tectonic dignity.”
+                      </p>
+                      <div class="press-attribution">
+                        <span class="author">ELENA VANDENBERG</span>
+                        <span class="outlet">CHIEF CURATOR, ARCHITECTURAL MONOGRAPHS EUROPE</span>
+                      </div>
+                    </div>
+                    <div class="press-logos">
+                      <span class="press-tag">DOMUS</span>
+                      <span class="press-tag">EL CROQUIS</span>
+                      <span class="press-tag">DETAIL ARCHITECTURE</span>
+                      <span class="press-tag">A+U JAPAN</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             SECTION 2: WORKS (5 Interactive 3D Architectural Collections)
+             ============================================== -->
+        <section id="view-works" class="view-panel">
+          <div class="works-experience-wrap">
+            
+            <!-- Folio Shelf: 5 Architectural Collection Switcher Tabs -->
+            <div class="folio-shelf-bar" role="tablist" aria-label="Architectural Monograph Collections">
+              <button class="folio-tab active" data-collection="resort" role="tab" aria-selected="true" title="Resort &amp; Hospitality Sanctuaries">
+                <span class="tab-vol">VOL. I</span>
+                <span class="tab-title">RESORT COLLECTION</span>
+                <span class="tab-sub">HOSPITALITY &amp; POOLS</span>
+                <span class="tab-indicator"></span>
+              </button>
+              <button class="folio-tab" data-collection="farmhouse" role="tab" aria-selected="false" title="Agrarian Estates &amp; Countryside Retreats">
+                <span class="tab-vol">VOL. II</span>
+                <span class="tab-title">FARMHOUSE COLLECTION</span>
+                <span class="tab-sub">AGRARIAN ESTATES</span>
+                <span class="tab-indicator"></span>
+              </button>
+              <button class="folio-tab" data-collection="estate" role="tab" aria-selected="false" title="Monumental Residences &amp; Grand Demesnes">
+                <span class="tab-vol">VOL. III</span>
+                <span class="tab-title">ESTATE HOUSE</span>
+                <span class="tab-sub">GRAND DEMESNES</span>
+                <span class="tab-indicator"></span>
+              </button>
+              <button class="folio-tab" data-collection="local" role="tab" aria-selected="false" title="Regional Architecture &amp; Vernacular Dwellings">
+                <span class="tab-vol">VOL. IV</span>
+                <span class="tab-title">LOCAL HOUSE</span>
+                <span class="tab-sub">VERNACULAR HOMES</span>
+                <span class="tab-indicator"></span>
+              </button>
+              <button class="folio-tab" data-collection="villa" role="tab" aria-selected="false" title="Sculptural Residences &amp; Cantilevered Havens">
+                <span class="tab-vol">VOL. V</span>
+                <span class="tab-title">LUXURY VILLA</span>
+                <span class="tab-sub">CANTILEVERED HAVENS</span>
+                <span class="tab-indicator"></span>
+              </button>
+            </div>
+
+            <!-- Book Top Control Bar: Editorial Navigation & Features -->
+            <div class="book-toolbar">
+              <div class="toolbar-left">
+                <span class="book-edition-tag" id="book-vol-badge">VOL. I — RESORT</span>
+                <span class="toolbar-sep">—</span>
+                <span class="book-status" id="book-page-indicator">COVER PAGE</span>
+              </div>
+
+              <div class="toolbar-center">
+                <button class="book-nav-btn" id="btn-book-prev" title="Turn to Previous Page">
+                  <i data-lucide="chevron-left"></i>
+                  <span>PREVIOUS</span>
+                </button>
+                <div class="page-pills-bar" id="book-nav-pills">
+                  <!-- Generated dynamically for quick jumping -->
+                </div>
+                <button class="book-nav-btn" id="btn-book-next" title="Turn to Next Page">
+                  <span>NEXT</span>
+                  <i data-lucide="chevron-right"></i>
+                </button>
+              </div>
+
+              <div class="toolbar-right">
+                <button class="tool-btn" id="btn-book-toc" title="Jump to Table of Contents">
+                  <i data-lucide="list"></i>
+                  <span>INDEX</span>
+                </button>
+                <button class="tool-btn" id="btn-book-fullscreen" title="Toggle Fullscreen Book Experience">
+                  <i data-lucide="maximize" class="icon-maximize"></i>
+                  <i data-lucide="minimize" class="icon-minimize hide"></i>
+                  <span>FULLSCREEN</span>
+                </button>
+                <button class="tool-btn highlight" id="btn-book-share" title="Download or Share Monograph">
+                  <i data-lucide="share-2"></i>
+                  <span>SHARE / EXPORT</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3D BOOK STAGE CONTAINER -->
+            <div class="book-stage" id="book-stage-area">
+              <!-- Realistic Book Drop Shadow & Ambient Floor Reflection -->
+              <div class="book-ambient-shadow"></div>
+
+              <!-- The Realistic 3D Flip Container (Dynamically Populated per Collection) -->
+              <div id="magazine-flipbook" class="flipbook-root">
+                <!-- Pages injected dynamically by collection engine -->
+              </div>
+            </div><!-- end .book-stage -->
+
+          </div><!-- end .works-experience-wrap -->
+        </section>
+
+        <!-- ==============================================
+             SECTION 3: CONTACT & LOCATION
+             ============================================== -->
+        <section id="view-contact" class="view-panel">
+          <div class="section-inner contact-section">
+            
+            <div class="section-header">
+              <div class="header-pre">
+                <span class="section-num">03</span>
+                <span class="section-tag">COMMISSIONS &amp; ATELIERS</span>
+              </div>
+              <h2 class="section-title">ENGAGE THE ATELIER</h2>
+              <p class="section-subtitle">
+                We accept a limited roster of private residential, cultural, and adaptive reuse commissions 
+                each calendar year. Direct your inquiry to our central office below.
+              </p>
+            </div>
+
+            <div class="contact-grid">
+              
+              <!-- Left: Editorial Contact Form -->
+              <div class="contact-form-card">
+                <form id="architect-inquiry-form" class="editorial-form">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="client-name">NAME / PRINCIPAL REPRESENTATIVE *</label>
+                      <input type="text" id="client-name" name="name" required placeholder="e.g. Julian von Weber" />
+                    </div>
+                    <div class="form-group">
+                      <label for="client-email">DIRECT EMAIL ADDRESS *</label>
+                      <input type="email" id="client-email" name="email" required placeholder="e.g. j.weber@studio.de" />
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="project-type">PROJECT TYPOLOGY *</label>
+                      <select id="project-type" name="type" required>
+                        <option value="" disabled selected>Select Commission Type</option>
+                        <option value="Residential">Private Residential Estate</option>
+                        <option value="Cultural">Cultural Pavilion / Museum Archive</option>
+                        <option value="Commercial">Corporate Atelier / Headquarters</option>
+                        <option value="Adaptive">Historic Restoration / Quarry Adaptive Reuse</option>
+                        <option value="Consult">Spatial Feasibility &amp; Site Assessment</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="project-location">SITE GEOGRAPHY / CITY</label>
+                      <input type="text" id="project-location" name="location" placeholder="e.g. Kyoto, Lake Como, Zurich" />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="project-scope">ESTIMATED SCALE / BUDGET HORIZON</label>
+                    <select id="project-scope" name="scope">
+                      <option value="€2M - €5M">€2,000,000 — €5,000,000</option>
+                      <option value="€5M - €12M">€5,000,000 — €12,000,000</option>
+                      <option value="€12M+">€12,000,000+ (Institutional / Monumental)</option>
+                      <option value="Confidential">Confidential / To Be Determined</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="project-message">PROJECT BRIEF &amp; SPATIAL AMBITIONS *</label>
+                    <textarea id="project-message" name="message" rows="4" required placeholder="Describe the topography, schedule, and architectural aspirations of your project..."></textarea>
+                  </div>
+
+                  <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="btn-submit-inquiry">
+                      <span>TRANSMIT COMMISSION BRIEF</span>
+                      <i data-lucide="send"></i>
+                    </button>
+                    <span class="form-privacy">Confidentiality assured under NDA.</span>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Right: Studio Presence & Architectural Location Map Card -->
+              <div class="contact-location-col">
+                
+                <!-- Location Card 1: Berlin Principal Atelier -->
+                <div class="atelier-card">
+                  <div class="atelier-card-top">
+                    <span class="brass-chip">PRINCIPAL ATELIER</span>
+                    <span class="coords">52°30'38.2"N 13°21'43.6"E</span>
+                  </div>
+                  <h3 class="atelier-title">Berlin Headquarters</h3>
+                  <div class="atelier-address">
+                    Tiergartenstraße 18<br />
+                    10785 Berlin, Germany
+                  </div>
+                  <div class="atelier-contacts">
+                    <div class="contact-item">
+                      <span class="item-label">Direct:</span>
+                      <a href="tel:+4930892410" class="item-link">+49 (0)30 892 4100</a>
+                    </div>
+                    <div class="contact-item">
+                      <span class="item-label">Dispatch:</span>
+                      <a href="mailto:berlin@6contour.com" class="item-link">berlin@6contour.com</a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Location Card 2: Tokyo Design Studio -->
+                <div class="atelier-card">
+                  <div class="atelier-card-top">
+                    <span class="brass-chip">ASIA-PACIFIC OFFICE</span>
+                    <span class="coords">35°39'52.1"N 139°42'54.2"E</span>
+                  </div>
+                  <h3 class="atelier-title">Tokyo Atelier</h3>
+                  <div class="atelier-address">
+                    5-7-2 Minami-Aoyama, Minato-ku<br />
+                    Tokyo 107-0062, Japan
+                  </div>
+                  <div class="atelier-contacts">
+                    <div class="contact-item">
+                      <span class="item-label">Direct:</span>
+                      <a href="tel:+81364219800" class="item-link">+81 (0)3 6421 9800</a>
+                    </div>
+                    <div class="contact-item">
+                      <span class="item-label">Dispatch:</span>
+                      <a href="mailto:tokyo@6contour.com" class="item-link">tokyo@6contour.com</a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Minimalist Architectural Map Graphic -->
+                <div class="minimal-map-card">
+                  <div class="map-inner">
+                    <svg viewBox="0 0 500 200" class="map-svg" aria-label="Architectural Grid Coordinates">
+                      <!-- Grid Lines -->
+                      <defs>
+                        <pattern id="archGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#DCD6C8" stroke-width="0.75" />
+                        </pattern>
+                      </defs>
+                      <rect width="100%" height="100%" fill="url(#archGrid)" />
+                      
+                      <!-- Subtle Contour Curves -->
+                      <path d="M 0 160 Q 150 140, 250 170 T 500 130" fill="none" stroke="#A58B67" stroke-width="1.2" stroke-opacity="0.6" />
+                      <path d="M 0 120 Q 130 90, 270 120 T 500 80" fill="none" stroke="#A58B67" stroke-width="1.2" stroke-opacity="0.4" />
+                      <path d="M 0 80 Q 200 40, 320 70 T 500 30" fill="none" stroke="#A58B67" stroke-width="1.2" stroke-opacity="0.25" />
+
+                      <!-- Berlin Pin -->
+                      <g transform="translate(180, 75)">
+                        <circle cx="0" cy="0" r="16" fill="none" stroke="#A58B67" stroke-width="1" stroke-dasharray="3,3" />
+                        <circle cx="0" cy="0" r="6" fill="#A58B67" />
+                        <text x="15" y="4" font-family="'Space Grotesk', monospace" font-size="10" fill="#252A29" letter-spacing="1">ATELIER BERLIN [HQ]</text>
+                      </g>
+
+                      <!-- Tokyo Pin -->
+                      <g transform="translate(390, 115)">
+                        <circle cx="0" cy="0" r="14" fill="none" stroke="#A58B67" stroke-width="1" stroke-dasharray="3,3" />
+                        <circle cx="0" cy="0" r="5" fill="#A58B67" />
+                        <text x="-95" y="4" font-family="'Space Grotesk', monospace" font-size="10" fill="#252A29" letter-spacing="1">TOKYO STUDIO</text>
+                      </g>
+                    </svg>
+
+                    <div class="map-bar">
+                      <span>GLOBAL ATELIER NETWORK</span>
+                      <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="map-link">
+                        <span>OPEN EXTERNAL ATLAS</span>
+                        <i data-lucide="external-link"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+
+      <!-- BOTTOM LUXURY FOOTER (Viewport Footer Bar) -->
+      <footer class="app-footer">
+        <div class="footer-left">
+          <span class="footer-brand">6 CONTOUR ARCHITECTS</span>
+          <span class="footer-dash">—</span>
+          <span class="footer-tagline">BAUHAUS MONOLITHIC SPATIAL RESEARCH</span>
+        </div>
+        <div class="footer-center">
+          <span class="footer-current-view" id="active-view-name">VIEW // 00 INDEX</span>
+        </div>
+        <div class="footer-right">
+          <span class="footer-copy">© 2026 6 CONTOUR. ALL RIGHTS RESERVED.</span>
+          <span class="footer-dash">—</span>
+          <span class="footer-paper-tag">UNCOATED 300GSM COTTON FEEL</span>
+        </div>
+      </footer>
+
+    </div><!-- end #app -->
+
+    <!-- ================= MODALS & TOASTS ================= -->
+
+    <!-- Share & Export Monograph Modal -->
+    <div id="modal-share" class="modal-overlay" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-pre">
+            <span class="brass-seal">PORTFOLIO EXPORT</span>
+            <span class="modal-folio">VOL. VI</span>
+          </div>
+          <button id="modal-close-btn" class="btn-icon" aria-label="Close Modal">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <h3 class="modal-title">Export Architectural Monograph</h3>
+          <p class="modal-text">
+            Experience the 6 Contour selected works offline or dispatch directly to your investment partners and structural consultants.
+          </p>
+
+          <div class="export-options-list">
+            <!-- Option 1: PDF Export -->
+            <button class="export-tile" id="btn-export-pdf">
+              <div class="tile-icon">
+                <i data-lucide="file-text"></i>
+              </div>
+              <div class="tile-info">
+                <strong>Printable Executive Dossier (PDF)</strong>
+                <span>High-resolution vector plates, specifications, and project narratives.</span>
+              </div>
+              <span class="tile-action">PRINT / SAVE</span>
+            </button>
+
+            <!-- Option 2: Copy Direct Share Link -->
+            <button class="export-tile" id="btn-copy-link">
+              <div class="tile-icon">
+                <i data-lucide="link"></i>
+              </div>
+              <div class="tile-info">
+                <strong>Copy Curated Presentation Link</strong>
+                <span>Direct client URL deep-linked to current plate.</span>
+              </div>
+              <span class="tile-action" id="copy-action-label">COPY URL</span>
+            </button>
+
+            <!-- Option 3: Request Hardcover Edition -->
+            <button class="export-tile" id="btn-order-hardcover">
+              <div class="tile-icon">
+                <i data-lucide="book"></i>
+              </div>
+              <div class="tile-info">
+                <strong>Request Limited Linen-Bound Edition</strong>
+                <span>Printed on Fedrigoni 300gsm uncoated cotton paper with blind-debossed foil.</span>
+              </div>
+              <span class="tile-action">ORDER FOLIO</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <span>ATELIER 6 CONTOUR • BERLIN</span>
+          <span class="modal-notice">CONFIDENTIAL CLIENT DISTRIBUTION</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast-message" class="toast-container" aria-live="polite">
+      <div class="toast-card">
+        <i data-lucide="check-circle" class="toast-icon"></i>
+        <div class="toast-content">
+          <strong id="toast-title">Notice</strong>
+          <span id="toast-body">Message body</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Application Script -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
