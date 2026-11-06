@@ -32,10 +32,10 @@ export const COLLECTIONS_DATA = {
     prefaceP2: 'The works in this collection examine the threshold between luxury leisure and ecological stewardship: infinity basins carved into marine bluffs, overwater timber pavilions, and thermal wellness sanctuaries rooted in seasonal stillness.',
     sketchCaption: 'FIG 1.1 — SEAWARD INFINITY BASIN & SOLAR RADIATION STUDY',
     sketchSvg: `
-      <line x1="20" y1="90" x2="380" y2="90" stroke="#A58B67" stroke-width="1.5" />
+      <line x1="20" y1="90" x2="380" y2="90" stroke="#ff7237" stroke-width="1.5" />
       <path d="M 40 90 Q 140 40, 260 70 T 360 40" fill="none" stroke="#252A29" stroke-width="2" />
-      <line x1="160" y1="45" x2="320" y2="45" stroke="#A58B67" stroke-width="1.5" stroke-dasharray="3,3" />
-      <circle cx="280" cy="30" r="10" fill="none" stroke="#A58B67" stroke-width="1" />
+      <line x1="160" y1="45" x2="320" y2="45" stroke="#ff7237" stroke-width="1.5" stroke-dasharray="3,3" />
+      <circle cx="280" cy="30" r="10" fill="none" stroke="#ff7237" stroke-width="1" />
     `,
     sigName: 'Marc Althaus',
     sigTitle: 'Hospitality Design Director, Berlin',
@@ -155,10 +155,10 @@ export const COLLECTIONS_DATA = {
     prefaceP2: 'In our Farmhouse Collection, we elevate these pragmatic origins into contemporary art. We combine thick stone thermal masses and soaring timber roof trusses with floor-to-ceiling glass breezeways and private courtyard gardens.',
     sketchCaption: 'FIG 2.1 — TRIPLE-TIER GABLE RATIO & PASSIVE CROSS-BREEZE MAPPING',
     sketchSvg: `
-      <line x1="20" y1="90" x2="380" y2="90" stroke="#A58B67" stroke-width="1.5" />
+      <line x1="20" y1="90" x2="380" y2="90" stroke="#ff7237" stroke-width="1.5" />
       <polygon points="60,90 120,40 180,90" fill="none" stroke="#252A29" stroke-width="2" />
       <polygon points="180,90 250,25 320,90" fill="none" stroke="#252A29" stroke-width="2" />
-      <line x1="120" y1="40" x2="250" y2="25" stroke="#A58B67" stroke-dasharray="3,3" />
+      <line x1="120" y1="40" x2="250" y2="25" stroke="#ff7237" stroke-dasharray="3,3" />
     `,
     sigName: 'Lukas Lindemann',
     sigTitle: 'Agrarian Architecture Director, Zurich',
@@ -280,12 +280,12 @@ export const COLLECTIONS_DATA = {
     prefaceP2: 'Our Estate House Collection creates contemporary landmarks designed to stand for over two centuries: symmetrical stone facades, formal water mirrors, double-height libraries, and extensive landscaped demesnes.',
     sketchCaption: 'FIG 3.1 — AXONOMETRIC COLONNADE CADENCE & COUR D’HONNEUR RATIO',
     sketchSvg: `
-      <line x1="20" y1="90" x2="380" y2="90" stroke="#A58B67" stroke-width="1.5" />
+      <line x1="20" y1="90" x2="380" y2="90" stroke="#ff7237" stroke-width="1.5" />
       <rect x="60" y="30" width="280" height="60" fill="none" stroke="#252A29" stroke-width="2" />
-      <line x1="120" y1="30" x2="120" y2="90" stroke="#A58B67" stroke-width="1.5" />
-      <line x1="160" y1="30" x2="160" y2="90" stroke="#A58B67" stroke-width="1.5" />
-      <line x1="240" y1="30" x2="240" y2="90" stroke="#A58B67" stroke-width="1.5" />
-      <line x1="280" y1="30" x2="280" y2="90" stroke="#A58B67" stroke-width="1.5" />
+      <line x1="120" y1="30" x2="120" y2="90" stroke="#ff7237" stroke-width="1.5" />
+      <line x1="160" y1="30" x2="160" y2="90" stroke="#ff7237" stroke-width="1.5" />
+      <line x1="240" y1="30" x2="240" y2="90" stroke="#ff7237" stroke-width="1.5" />
+      <line x1="280" y1="30" x2="280" y2="90" stroke="#ff7237" stroke-width="1.5" />
     `,
     sigName: 'Christian von Stauffen',
     sigTitle: 'Estate Masterplanning Director, Vienna',
@@ -405,8 +405,8 @@ export const COLLECTIONS_DATA = {
     sketchSvg: `
       <rect x="40" y="30" width="120" height="60" fill="none" stroke="#252A29" stroke-width="1.5" />
       <rect x="240" y="30" width="120" height="60" fill="none" stroke="#252A29" stroke-width="1.5" />
-      <line x1="160" y1="90" x2="240" y2="90" stroke="#A58B67" stroke-width="2" />
-      <circle cx="200" cy="70" r="12" fill="none" stroke="#A58B67" stroke-width="1.2" />
+      <line x1="160" y1="90" x2="240" y2="90" stroke="#ff7237" stroke-width="2" />
+      <circle cx="200" cy="70" r="12" fill="none" stroke="#ff7237" stroke-width="1.2" />
     `,
     sigName: 'Kenzo Takahashi',
     sigTitle: 'Vernacular Research Lead, Kyoto',
@@ -524,10 +524,10 @@ export const COLLECTIONS_DATA = {
     prefaceP2: 'The works in this collection explore post-tensioned concrete cantilevers floating over cliffs, seamless floor-to-ceiling glass expanses that erase indoor-outdoor barriers, and private sculpture gardens illuminated by seasonal light.',
     sketchCaption: 'FIG 5.1 — 18-METER COUNTERWEIGHT CANTILEVER STRESS STUDY',
     sketchSvg: `
-      <line x1="20" y1="90" x2="380" y2="90" stroke="#A58B67" stroke-width="1.5" />
+      <line x1="20" y1="90" x2="380" y2="90" stroke="#ff7237" stroke-width="1.5" />
       <rect x="60" y="50" width="80" height="40" fill="#252A29" />
       <line x1="140" y1="50" x2="340" y2="40" stroke="#252A29" stroke-width="3" />
-      <line x1="140" y1="50" x2="280" y2="90" stroke="#A58B67" stroke-dasharray="4,4" />
+      <line x1="140" y1="50" x2="280" y2="90" stroke="#ff7237" stroke-dasharray="4,4" />
     `,
     sigName: 'Marc Althaus',
     sigTitle: 'Principal Atelier Director, Berlin',

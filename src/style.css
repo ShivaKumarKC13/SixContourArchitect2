@@ -1,25 +1,30 @@
 /* ==========================================================================
    6 CONTOUR ARCHITECTS — DESIGN SYSTEM & MASTER STYLESHEET
    Core Philosophy: White space is the primary design directive.
-   Palette: Warm Ivory #F3F1EB, Charcoal #252A29, Muted Bronze #A58B67
+   Palette: Background #fefefd, Charcoal #252A29, Primary Accent #ff7237
    Typography: Bauhaus Font Family ('Bauhaus 93', 'Syne', 'Jost')
    ========================================================================== */
 
 :root {
   /* Architectural Palette */
-  --bg-ivory: #F3F1EB;          /* Heavyweight uncoated 300gsm paper stock */
-  --bg-ivory-light: #F9F8F5;    /* Highlight paper tone */
-  --bg-stone: #EAE6DC;          /* Warm stone surface */
-  --bg-stone-subtle: #E2DDD1;   /* Inset card borders & rules */
+  --bg-ivory: #fefefd;          /* Pure warm paper stock #fefefd */
+  --bg-ivory-light: #ffffff;    /* Card & panel surface white */
+  --bg-stone: #f5f4ee;          /* Soft architectural stone / chips */
+  --bg-stone-subtle: #eae7dd;   /* Inset card borders & subtle rules */
   
   --text-charcoal: #252A29;     /* Deep architectural charcoal */
   --text-charcoal-dim: #545B59; /* Secondary editorial body text */
   --text-charcoal-faint: #8E9491; /* Technical metadata, folios */
   
-  --accent-brass: #A58B67;      /* Aged brass & muted bronze */
-  --accent-brass-hover: #8C724E;/* Deeper aged brass */
-  --accent-brass-light: #DFC8A8;/* Foil stamp reflections */
-  --accent-brass-glow: rgba(165, 139, 103, 0.18);
+  --primary-color: #ff7237;     /* Primary Bauhaus architectural vermilion */
+  --primary-hover: #e55c20;     /* Deeper primary active hover */
+  --primary-light: #ffa278;     /* Soft highlight reflection */
+  --primary-glow: rgba(255, 114, 55, 0.22);
+
+  --accent-brass: #ff7237;      /* Primary accent mapped to #ff7237 */
+  --accent-brass-hover: #e55c20;
+  --accent-brass-light: #ffa278;
+  --accent-brass-glow: rgba(255, 114, 55, 0.22);
 
   /* Typography Stacks */
   --font-bauhaus: 'Bauhaus 93', 'Syne', 'Jost', -apple-system, sans-serif;
@@ -81,7 +86,7 @@ html, body {
   opacity: 0.28;
   background-image: 
     radial-gradient(#252a29 0.5px, transparent 0.5px),
-    radial-gradient(#a58b67 0.5px, var(--bg-ivory) 0.5px);
+    radial-gradient(#ff7237 0.5px, var(--bg-ivory) 0.5px);
   background-size: 20px 20px;
   background-position: 0 0, 10px 10px;
   mix-blend-mode: multiply;
@@ -115,7 +120,7 @@ html, body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--bg-stone-subtle);
-  background: rgba(243, 241, 235, 0.92);
+  background: rgba(254, 254, 253, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -526,9 +531,9 @@ html, body {
   justify-content: center;
   gap: 0.85rem;
   padding: 0.95rem 2rem;
-  background: var(--text-charcoal);
-  color: var(--bg-ivory);
-  border: 1px solid var(--text-charcoal);
+  background: var(--primary-color);
+  color: #FFFFFF;
+  border: 1px solid var(--primary-color);
   font-family: var(--font-editorial);
   font-size: 0.8rem;
   font-weight: 600;
@@ -541,14 +546,15 @@ html, body {
 .btn-primary svg {
   width: 15px;
   height: 15px;
-  stroke: var(--accent-brass-light);
+  stroke: #FFFFFF;
   transition: transform 0.3s var(--ease-smooth);
 }
 
 .btn-primary:hover {
-  background: #141716;
-  border-color: var(--accent-brass);
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
   color: #FFFFFF;
+  box-shadow: 0 4px 16px var(--primary-glow);
 }
 
 .btn-primary:hover svg {
@@ -574,8 +580,9 @@ html, body {
 }
 
 .btn-secondary:hover {
-  border-color: var(--accent-brass);
-  background: rgba(165, 139, 103, 0.08);
+  border-color: var(--primary-color);
+  background: rgba(255, 114, 55, 0.08);
+  color: var(--primary-color);
 }
 
 .brass-seal {
@@ -1050,7 +1057,7 @@ html, body {
 
 .swatch-concrete { background: #B8B6B0; }
 .swatch-stone { background: #8E8A80; }
-.swatch-brass { background: #A58B67; }
+.swatch-brass { background: #ff7237; }
 .swatch-wood { background: #2F2D2A; }
 
 .swatch-meta {
@@ -1466,7 +1473,7 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: inset 0 0 0 3px rgba(165, 139, 103, 0.2);
+  box-shadow: inset 0 0 0 3px rgba(255, 114, 55, 0.22);
 }
 
 .cover-top {
@@ -1498,7 +1505,7 @@ html, body {
   width: 100%;
   height: 52%;
   overflow: hidden;
-  border: 1px solid rgba(165, 139, 103, 0.4);
+  border: 1px solid rgba(255, 114, 55, 0.4);
 }
 
 .cover-img {
@@ -2110,7 +2117,7 @@ html, body {
 .ba-pill-before {
   bottom: 0.75rem;
   left: 0.75rem;
-  background: rgba(165, 139, 103, 0.9);
+  background: rgba(255, 114, 55, 0.9);
   color: #FFF;
 }
 
@@ -2531,7 +2538,7 @@ html, body {
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid var(--bg-stone-subtle);
-  background: rgba(243, 241, 235, 0.9);
+  background: rgba(254, 254, 253, 0.94);
   backdrop-filter: blur(8px);
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -2777,7 +2784,7 @@ html, body {
 .toast-content span {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: #A58B67;
+  color: var(--accent-brass);
 }
 
 .hide {

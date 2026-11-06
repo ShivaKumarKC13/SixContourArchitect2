@@ -1324,7 +1324,7 @@ document.addEventListener('DOMContentLoaded', () => {
           particleCount: 70,
           spread: 60,
           origin: { y: 0.7 },
-          colors: ['#A58B67', '#252A29', '#EAE6DC', '#DFC8A8']
+          colors: ['#ff7237', '#252A29', '#fefefd', '#ffa278']
         });
       } catch {
         // Confetti fallback
